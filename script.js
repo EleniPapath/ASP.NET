@@ -1,6 +1,5 @@
-// ⚠️ ΣΗΜΑΝΤΙΚΟ: Αντικατέστησε τα παρακάτω με τα δικά σου στοιχεία
-const OWNER = 'EleniPapath';   // π.χ. 'john-doe'
-const REPO  = 'ASP.NET';       // π.χ. 'my-projects'
+const OWNER = 'EleniPapath';   // Το username σου στο GitHub
+const REPO  = 'ASP.NET';       // Το όνομα του αποθετηρίου σου
 
 const API_BASE = `https://api.github.com/repos/${OWNER}/${REPO}/contents`;
 
@@ -41,8 +40,6 @@ async function loadFolders() {
 }
 
 async function loadHtmlFromFolder(folderPath) {
-    contentArea.innerHTML = '<p>Φόρτωση...</p>';
-
     try {
         const items = await fetchGitHub(folderPath);
 
@@ -54,24 +51,20 @@ async function loadHtmlFromFolder(folderPath) {
         );
 
         if (!htmlFile) {
-            contentArea.innerHTML = '<p class="error">Δεν βρέθηκε αρχείο HTML σε αυτόν τον φάκελο.</p>';
+            alert('Δεν βρέθηκε αρχείο HTML σε αυτόν τον φάκελο.');
             return;
         }
 
-        // Δημιουργούμε το URL για το raw περιεχόμενο του HTML
-        // Χρησιμοποιούμε το download_url ή κατασκευάζουμε το raw URL
-        const rawUrl = htmlFile.download_url
-            ? htmlFile.download_url
-            : `https://raw.githubusercontent.com/${OWNER}/${REPO}/main/${htmlFile.path}`;
+        // 🔥 ΔΗΜΙΟΥΡΓΙΑ ΤΟΥ ΣΩΣΤΟΥ URL (GitHub Pages αντί για raw GitHub)
+        // Αυτό διασφαλίζει ότι το HTML θα φορτωθεί ως ιστοσελίδα και όχι ως κείμενο
+        const pagesUrl = `https://${OWNER}.github.io/${REPO}/${htmlFile.path}`;
 
-        // Εμφάνιση σε iframe
-        contentArea.innerHTML = `
-            <h2>${folderPath}</h2>
-            <iframe src="${rawUrl}" title="${folderPath}"></iframe>
-        `;
+        // Άνοιγμα σε νέα καρτέλα (new tab)
+        window.open(pagesUrl, '_blank');
 
     } catch (error) {
-        contentArea.innerHTML = `<p class="error">Σφάλμα: ${error.message}</p>`;
+        console.error(error);
+        alert('Σφάλμα: ' + error.message);
     }
 }
 
