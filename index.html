@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Επιλογή Έργου</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        h1 { color: #333; }
+        #folder-list { list-style: none; padding: 0; }
+        #folder-list li {
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #folder-list li:hover { background: #eaeef2; }
+        #folder-list li a { text-decoration: none; color: #0969da; font-weight: bold; }
+        #content-area { margin-top: 30px; }
+        iframe { width: 100%; height: 600px; border: 1px solid #d0d7de; border-radius: 6px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Επιλέξτε Έργο</h1>
+    <ul id="folder-list">
+        <li>Φόρτωση φακέλων...</li>
+    </ul>
+
+    <div id="content-area"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
