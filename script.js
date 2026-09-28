@@ -1,6 +1,6 @@
 // ⚠️ ΣΗΜΑΝΤΙΚΟ: Αντικατέστησε τα παρακάτω με τα δικά σου στοιχεία
-const OWNER = 'TO-USERNAME-SOU';   // π.χ. 'john-doe'
-const REPO  = 'TO-REPO-SOU';       // π.χ. 'my-projects'
+const OWNER = 'EleniPapath';   // π.χ. 'john-doe'
+const REPO  = 'ASP.NET';       // π.χ. 'my-projects'
 
 const API_BASE = `https://api.github.com/repos/${OWNER}/${REPO}/contents`;
 
